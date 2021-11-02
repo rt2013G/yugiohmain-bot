@@ -1,6 +1,9 @@
 # Bot token and group id
 token.json
 
+# Bot Python Libraries
+python-telegram-bot
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
