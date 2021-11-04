@@ -63,7 +63,7 @@ def main():
     updater.start_webhook(listen="0.0.0.0",
                           port=int(heroku_port),
                           url_path=bot_token,
-                          webhook_url=f"https://{heroku_name}.herokuapp.com/{bot_token}", drop_pending_updates=True)
+                          webhook_url=f"https://{heroku_name}.herokuapp.com/{bot_token}")
     # updater.start_polling(drop_pending_updates=True)
     updater.idle()
 
