@@ -1,1 +1,1 @@
-web: python src.wyugiohmain_bot.py
+web: python src.yugiohmain_bot.py
