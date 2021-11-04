@@ -1,1 +1,1 @@
-web: gunicorn src.wyugiohmain_bot
+web: python src.wyugiohmain_bot.py
