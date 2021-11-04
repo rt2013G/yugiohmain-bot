@@ -1,1 +1,1 @@
-app: python src/yugiohmain_bot.py
+app: src/yugiohmain_bot.py
