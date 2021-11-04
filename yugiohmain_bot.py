@@ -2,7 +2,6 @@ import json
 import logging
 import os
 import urllib.request
-from decouple import config
 from telegram import Update
 from telegram.ext import (
     Updater,
@@ -12,8 +11,7 @@ from telegram.ext import (
     CallbackContext
 )
 
-from src import message_filters
-from src import ds_bot
+import message_filters
 
 # todo marketplace message limiter
 # todo card database lookup
@@ -40,7 +38,7 @@ feedback_filter = message_filters.FeedbackFilter()
 
 # Heroku stuff
 heroku_name = "yugiohmain-bot"
-heroku_port = int(os.environ.get("PORT", "5000"))
+heroku_port = int(os.environ.get("PORT"))
 
 # Initializes the updater
 # Makes it global so it works for the ds bot
