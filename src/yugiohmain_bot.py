@@ -38,6 +38,11 @@ main_filter = message_filters.MainFilter()
 market_filter = message_filters.MarketFilter()
 feedback_filter = message_filters.FeedbackFilter()
 
+# Heroku stuff
+heroku_name = "yugiohmain-bot"
+heroku_port = int(os.environ.get("PORT"))
+print(heroku_port)
+
 # Initializes the updater
 # Makes it global so it works for the ds bot
 updater = Updater(bot_token)
@@ -46,13 +51,8 @@ updater = Updater(bot_token)
 card_names_db = "https://db.ygorganization.com/data/idx/card/name/en"
 card_data_db = "https://db.ygorganization.com/data/card/"
 
-# Heroku stuff
-heroku_name = "yugiohmain-bot"
-
 
 def main():
-    heroku_port = os.environ.get("PORT")
-
     dispatcher = updater.dispatcher
     dispatcher.add_handler(MessageHandler(market_filter & Filters.text & feedback_filter & ~Filters.command,
                                           feedback_handler))
@@ -61,7 +61,7 @@ def main():
     dispatcher.add_handler(CommandHandler("carta", card_lookup))
 
     updater.start_webhook(listen="0.0.0.0",
-                          port=int(heroku_port),
+                          port=heroku_port,
                           url_path=bot_token,
                           webhook_url=f"https://{heroku_name}.herokuapp.com/{bot_token}")
     # updater.start_polling(drop_pending_updates=True)
