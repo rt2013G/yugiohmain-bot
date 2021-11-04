@@ -1,7 +1,6 @@
 import json
 import logging
 import urllib.request
-import ds_bot
 from telegram import Update
 from telegram.ext import (
     Updater,

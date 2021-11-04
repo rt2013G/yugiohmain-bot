@@ -1,13 +1,13 @@
 import json
+from decouple import  config
 
 from telegram import Message
 from telegram.ext import MessageFilter
 
-# Reading all tokens and IDs
-bot_token = json.load(open("token.json",), )["bot_token"]
-main_id = json.load(open("token.json",), )["main_id"]
-market_id = json.load(open("token.json",), )["market_id"]
-feedback_id = json.load(open("token.json",), )["feedback_id"]
+bot_token = config("bot_token")
+main_id = int(config("main_id"))
+market_id = int(config("market_id"))
+feedback_id = int(config("feedback_id"))
 
 
 class MarketFilter(MessageFilter):

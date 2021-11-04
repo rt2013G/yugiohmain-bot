@@ -1,4 +1,5 @@
 import json
+from decouple import config
 
 import discord
 from telegram.ext import Updater
@@ -6,8 +7,7 @@ from telegram.ext import Updater
 import message_filters
 import yugiohmain_bot
 
-ds_token = json.load(open("token.json",), )["discord_token"]
-
+ds_token = config("discord_token")
 ds_client = discord.Client()
 
 
