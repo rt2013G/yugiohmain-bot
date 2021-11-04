@@ -41,7 +41,6 @@ feedback_filter = message_filters.FeedbackFilter()
 # Heroku stuff
 heroku_name = "yugiohmain-bot"
 heroku_port = int(os.environ.get("PORT"))
-print(heroku_port)
 
 # Initializes the updater
 # Makes it global so it works for the ds bot
@@ -53,6 +52,8 @@ card_data_db = "https://db.ygorganization.com/data/card/"
 
 
 def main():
+    print(heroku_port)
+    print("popy")
     dispatcher = updater.dispatcher
     dispatcher.add_handler(MessageHandler(market_filter & Filters.text & feedback_filter & ~Filters.command,
                                           feedback_handler))
