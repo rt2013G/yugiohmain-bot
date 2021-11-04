@@ -1,13 +1,16 @@
 import logging
+import urllib.request
+import json
 
 from telegram import Update
 from telegram.ext import (
     Updater,
     MessageHandler,
+    CommandHandler,
     Filters,
     CallbackContext
 )
-
+from urllib.request import urlopen
 import message_filters
 
 # todo marketplace message limiter
@@ -37,14 +40,19 @@ feedback_filter = message_filters.FeedbackFilter()
 # Makes it global so it works for the ds bot
 updater = Updater(bot_token)
 
+# YGODB
+card_names_db = "https://db.ygorganization.com/data/idx/card/name/en"
+card_data_db = "https://db.ygorganization.com/data/card/"
+
 
 def main():
     dispatcher = updater.dispatcher
 
     dispatcher.add_handler(MessageHandler(market_filter & Filters.text & feedback_filter & ~Filters.command,
                                           feedback_handler))
-    dispatcher.add_handler(MessageHandler(market_filter & Filters.text & ~Filters.command,
-                                          market_handler))
+    # dispatcher.add_handler(MessageHandler(market_filter & Filters.text & ~Filters.command,  W.I.P.
+    #                                      market_handler))
+    dispatcher.add_handler(CommandHandler("carta", card_lookup))
 
     updater.start_polling(drop_pending_updates=True)
     updater.idle()
@@ -60,6 +68,21 @@ def market_handler(update: Update, context: CallbackContext):
             f"Ciao {update.effective_user.first_name}, non hai inserito un #vendo o #cerco nel tuo "
             f"messaggio, ti consiglio di farlo per aumentare la visilibità del tuo post!",
         )
+
+
+def card_lookup(update: Update, context: CallbackContext):
+    message = update.message.text[7:]
+    try:
+        with urllib.request.urlopen(card_names_db) as url:
+            card_json = json.loads(url.read().decode())
+            card_id = card_json[message]
+            url_card_id = card_data_db + str(card_id[0])
+            with urllib.request.urlopen(url_card_id) as url_id:
+                card_data_json = json.loads(url_id.read().decode())
+                card_effect = card_data_json["cardData"]["en"]["effectText"]
+                updater.bot.send_message(main_id, card_effect)
+    except:
+        updater.bot.send_message(main_id, "Non ho trovato la carta desiderata.")
 
 
 if __name__ == "__main__":
