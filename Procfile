@@ -1,1 +1,1 @@
-web: gunicorn yugiohmain-bot.wsgi
+web: gunicorn src.wsgi

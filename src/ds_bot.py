@@ -1,4 +1,3 @@
-import json
 from decouple import config
 
 import discord
@@ -25,7 +24,7 @@ async def on_voice_state_update(member, before, after):
     if before.channel is None and after.channel is not None:
         send_msg_to_telegram(message_filters.main_id, f"{member.display_name} è entrato nel canale {after.channel} su "
                                                       f"discord. \nLink discord: https://discord.gg/cnKQ8eqVe4",
-                                                      yugiohmain_bot.updater)
+                             yugiohmain_bot.updater)
 
 
 ds_client.run(ds_token)

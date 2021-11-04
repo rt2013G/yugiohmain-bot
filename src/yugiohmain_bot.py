@@ -10,7 +10,8 @@ from telegram.ext import (
     CallbackContext
 )
 
-import message_filters
+from src import message_filters
+from src import ds_bot
 
 # todo marketplace message limiter
 # todo card database lookup
