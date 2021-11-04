@@ -1,1 +1,1 @@
-web: python src.yugiohmain_bot.py
+web: python yugiohmain_bot.py
