@@ -1,6 +1,7 @@
-from telegram.ext import MessageFilter
-from telegram import Message
 import json
+
+from telegram import Message
+from telegram.ext import MessageFilter
 
 # Reading all tokens and IDs
 bot_token = json.load(open("token.json",), )["bot_token"]
