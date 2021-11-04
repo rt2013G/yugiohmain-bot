@@ -1,1 +1,1 @@
-web: gunicorn yugiohmain_bot.py:app
+web: gunicorn yugiohmain_bot:app
