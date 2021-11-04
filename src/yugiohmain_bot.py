@@ -51,22 +51,22 @@ card_names_db = "https://db.ygorganization.com/data/idx/card/name/en"
 card_data_db = "https://db.ygorganization.com/data/card/"
 
 
-def main():
-    print(heroku_port)
-    print("popy")
-    dispatcher = updater.dispatcher
-    dispatcher.add_handler(MessageHandler(market_filter & Filters.text & feedback_filter & ~Filters.command,
-                                          feedback_handler))
-    # dispatcher.add_handler(MessageHandler(market_filter & Filters.text & ~Filters.command,  W.I.P.
-    #                                      market_handler))
-    dispatcher.add_handler(CommandHandler("carta", card_lookup))
-
-    updater.start_webhook(listen="0.0.0.0",
-                          port=heroku_port,
-                          url_path=bot_token,
-                          webhook_url=f"https://{heroku_name}.herokuapp.com/{bot_token}")
-    # updater.start_polling(drop_pending_updates=True)
-    updater.idle()
+# def main():
+    # print(heroku_port)
+    # print("popy")
+    # dispatcher = updater.dispatcher
+    # dispatcher.add_handler(MessageHandler(market_filter & Filters.text & feedback_filter & ~Filters.command,
+    #                                       feedback_handler))
+    # # dispatcher.add_handler(MessageHandler(market_filter & Filters.text & ~Filters.command,  W.I.P.
+    # #                                      market_handler))
+    # dispatcher.add_handler(CommandHandler("carta", card_lookup))
+    #
+    # updater.start_webhook(listen="0.0.0.0",
+    #                       port=heroku_port,
+    #                       url_path=bot_token,
+    #                       webhook_url=f"https://{heroku_name}.herokuapp.com/{bot_token}")
+    # # updater.start_polling(drop_pending_updates=True)
+    # updater.idle()
 
 
 def feedback_handler(update: Update, context: CallbackContext):
@@ -97,4 +97,18 @@ def card_lookup(update: Update, context: CallbackContext):
 
 
 if __name__ == "__main__":
-    main()
+    print(heroku_port)
+    print("popy")
+    dispatcher = updater.dispatcher
+    dispatcher.add_handler(MessageHandler(market_filter & Filters.text & feedback_filter & ~Filters.command,
+                                          feedback_handler))
+    # dispatcher.add_handler(MessageHandler(market_filter & Filters.text & ~Filters.command,  W.I.P.
+    #                                      market_handler))
+    dispatcher.add_handler(CommandHandler("carta", card_lookup))
+
+    updater.start_webhook(listen="0.0.0.0",
+                          port=heroku_port,
+                          url_path=bot_token,
+                          webhook_url=f"https://{heroku_name}.herokuapp.com/{bot_token}")
+    # updater.start_polling(drop_pending_updates=True)
+    updater.idle()
