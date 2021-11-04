@@ -59,13 +59,13 @@ def main():
     #                                      market_handler))
     dispatcher.add_handler(CommandHandler("carta", card_lookup))
 
-    heroku_port = config("PORT", "8443")
-    updater.start_webhook(listen="0.0.0.0",
-                          port=int(heroku_port),
-                          url_path=bot_token,
-                          webhook_url=f"https://{heroku_name}.herokuapp.com/{bot_token}")
-    # updater.start_polling(drop_pending_updates=True)
-    updater.idle()
+    # heroku_port = os.environ.get("PORT")
+    # updater.start_webhook(listen="0.0.0.0",
+    #                       port=int(heroku_port),
+    #                       url_path=bot_token,
+    #                       webhook_url=f"https://{heroku_name}.herokuapp.com/{bot_token}")
+    # # updater.start_polling(drop_pending_updates=True)
+    # updater.idle()
 
 
 def feedback_handler(update: Update, context: CallbackContext):
@@ -96,4 +96,10 @@ def card_lookup(update: Update, context: CallbackContext):
 
 
 if __name__ == "__main__":
+    heroku_port = os.environ.get("PORT")
+    updater.start_webhook(listen="0.0.0.0",
+                          port=int(heroku_port),
+                          url_path=bot_token,
+                          webhook_url=f"https://{heroku_name}.herokuapp.com/{bot_token}")
+    updater.idle()
     main()
