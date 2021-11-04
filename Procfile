@@ -1,1 +1,1 @@
-web: gunicorn src.wsgi
+web: gunicorn --chdir yugiohmain-bot src.wsgi
