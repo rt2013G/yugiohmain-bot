@@ -2,6 +2,7 @@ import json
 import logging
 import os
 import urllib.request
+from decouple import config
 from telegram import Update
 from telegram.ext import (
     Updater,
@@ -47,7 +48,7 @@ card_data_db = "https://db.ygorganization.com/data/card/"
 
 # Heroku stuff
 heroku_name = "yugiohmain-bot"
-heroku_port = os.environ.get("PORT")
+heroku_port = config("PORT")
 
 
 def main():
