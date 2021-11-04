@@ -60,7 +60,7 @@ def main():
     dispatcher.add_handler(CommandHandler("carta", card_lookup))
 
     heroku_port = config("PORT", "8443")
-    updater.start_webhook(listen="0.0.0.0",
+    updater.start_webhook(listen="127.0.0.1",
                           port=int(heroku_port),
                           url_path=bot_token,
                           webhook_url=f"https://{heroku_name}.herokuapp.com/{bot_token}")
