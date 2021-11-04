@@ -48,6 +48,7 @@ card_data_db = "https://db.ygorganization.com/data/card/"
 
 # Heroku stuff
 heroku_name = "yugiohmain-bot"
+heroku_port = config("PORT")
 
 
 def main():
@@ -59,7 +60,6 @@ def main():
     #                                      market_handler))
     dispatcher.add_handler(CommandHandler("carta", card_lookup))
 
-    heroku_port = config("PORT")
     updater.start_webhook(listen="0.0.0.0",
                           port=int(heroku_port),
                           url_path=bot_token,

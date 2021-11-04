@@ -1,1 +1,1 @@
-web: python src/yugiohmain_bot.py
+worker: python src/yugiohmain_bot.py
